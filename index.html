@@ -23,6 +23,11 @@
       text-align: center;
     }
 
+    #changing-text {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
     @media (max-width: 600px) {
       .container {
         flex-direction: column;
@@ -33,8 +38,35 @@
 </head>
 <body>
   <div class="container">
-    <span>zajebaancijaa</span>
-    <span></span>
+    <span id="changing-text">zajebaancijaa</span>
   </div>
+
+  <script>
+    const phrases = [
+      "U banjaaluucii",
+      "Imamo vremena",
+      "Ništa previše",
+      "Zajebaancija",
+      "Ispoštuje se",
+      "Onako",
+      "Buurazz",
+      "Gotivan lik"
+    ];
+
+    let index = 0;
+    const span = document.getElementById("changing-text");
+
+    setInterval(() => {
+      // Fade out
+      span.style.opacity = 0;
+
+      // Nakon što završi fade out (500ms), promijeni tekst i fade in
+      setTimeout(() => {
+        index = (index + 1) % phrases.length;
+        span.textContent = phrases[index];
+        span.style.opacity = 1;
+      }, 500);
+    }, 2500); // mijenja se svake 2.5 sekunde (0.5s animacija + 2s prikaz)
+  </script>
 </body>
 </html>
